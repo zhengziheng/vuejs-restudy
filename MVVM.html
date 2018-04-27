@@ -8,6 +8,37 @@
     <script src="./vue.js"></script>
 </head>
 <body>
-    
+    <div id="app">
+        <input type="text" name="" id="" v-model="inputValue">
+        <button @click="handleBtnClick">提交</button>
+        <ul>
+            <todo-item :content="item" v-for="item in list"></todo-item>
+        </ul>
+    </div>
+
+    <script>
+        var TodoItem={
+            props:['content'],
+            template:'<li>{{content}}</li>'
+        }
+
+        var app = new Vue({
+            el:'#app',
+            components:{
+                TodoItem,
+            },
+            data:{
+                todoValue:'',
+                list:[]
+            },
+            methods:{
+                handleBtnClick(){
+                    this.list.push(this.todoValue)
+                    this.todoValue = ''
+                }
+            }
+        })
+
+    </script>
 </body>
 </html>
