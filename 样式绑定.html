@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .activated{
+        color:red;
+    }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+            <!-- 方法1：class的对象绑定 -->
+        <div 
+        @click="handleDivClick"
+        :class="{activated:isActivated}"
+        >Hello vue</div>
+            <!-- 方法2：class的数组绑定 数组里面记录变量名 -->
+        <div 
+        @click="handleDivClick"
+        :class="[activated]"
+        >Hello vue</div>
+        <!-- 方法3 -->
+        <div :style="styleObj"   @click="handleDivClick">Hello Vue</div>
+
+        <!-- 方法4 -->
+        <div :style="[styleObj,{fontSize:'20px'}]"   @click="handleDivClick">Hello Vue</div>
+
+    </div>
+
+    <script >
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            isActivated:false, //方法1
+            activated:'',//方法2
+            styleObj:{color:'black'}, //方法3
+        },
+        methods:{
+            // 方法1
+            handleDivClick(){
+                this.isActivated = !this.isActivated
+            },
+            // 方法2
+            handleDivClick(){
+                if(this.activated===activated){
+                    this.activated=''
+                }
+                this.activated = 'activated'
+            },
+            //方法3
+            handleDivClick(){
+                let color = this.styleObj.color
+                if(color==='red'){
+                    color = 'black'
+                }
+                color = 'red'
+                
+            }
+
+        }
+        
+    })
+    
+    
+    </script>
+    
+</body>
+</html>
