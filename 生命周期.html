@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生命周期</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+
+    <script>
+        //生命周期函数 是vue实例在某一个时间点会自动执行的函数
+    let vm  = new Vue({
+        el:'#app',
+        template:'<div>hello vue</div>',
+        beforeCreate(){//初始化事件函数以及生命周期之后 执行它
+            console.log('beforeCreate')
+        },
+        created(){//外部注入，双向绑定初始化之后执行它，一般用来执行axios，执行完它之后，vue实例初始化基本结束
+            console.log('created')
+        },
+        beforeMount(){ 
+            // 把vm里面的数据挂载到dom之前执行
+        console.log(this.$el);
+        console.log('beforeMount')
+            
+        },
+        mounted(){
+        // 把vm里面的数据挂载到dom之后执行
+            console.log(this.$el);
+            console.log('mounted')
+        },
+        beforeDestroy(){
+            //调用vm.$destory()之前执行
+            console.log('beforeDestroy')
+        },
+        destroyed(){
+            //调用vm.$destory()之后执行
+            console.log('destroyed')
+        },
+        //当数据发生改变的时候调用
+        beforeUpdate(){
+            // 数据发生改变还没有渲染之前调用
+            console.log('beforeUpdate')
+
+        },
+        updated(){
+            // 数据发生改变，已经重新渲染了再调用
+            console.log('updated')
+
+        }
+
+    })
+    </script>
+</body>
+</html>
