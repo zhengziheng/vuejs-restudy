@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- v-if和v-show的区别，v-if的变量为false的时候，不会有dom结构，而v-show存在dom元素，display：none -->
+        <!-- v-else一定要和v-if连着写 -->
+        <!-- key相关的deff算法，盘算key值，如果key值不一样则不会复用原来的dom -->
+        <div v-if="show">用户名：<input type="text" key="username"></div>
+        <div v-else="show">邮箱名：<input type="text" key="email"></div>
+
+        <div v-show="show">{{message}}</div>
+    </div>
+
+
+    <script>
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            show:false,
+            message:'hello Vue',
+        },
+    })
+    </script>
+</body>
+</html>
