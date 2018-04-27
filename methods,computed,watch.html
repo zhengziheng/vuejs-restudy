@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算属性，方法，侦听器</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 计算属性  直接写变量名 -->
+        {{fullName}} 
+        <!-- 方法   需要在插值里面用()进行方法的调用-->
+        <!-- {{fullName()}} -->
+    </div>
+
+
+    <script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            firstName:"Ming",
+            lastName:"Lee",
+            fullName:'Ming Lee'
+        },
+        //计算属性,会对结果进行缓存，如果结果依赖的值没有变化，
+        // 那么这个方法不会执行，一直用上一次计算的结果，从而达到提升性能的目的
+        // computed:{
+        //     fullName(){
+        //         return this.firstName+" "+this.lastName
+        //     },
+        // },
+        // methods:{
+        //     fullName(){
+        //         return this.firstName+" "+this.lastName
+        //     },
+
+        // },
+        watch:{
+            firstName(){
+                this.fullName = this.firstName+' '+this.lastName
+            },
+            lastName(){
+                this.fullName = this.firstName+' '+this.lastName
+            }
+        }
+
+    })
+    </script>
+</body>
+</html>
