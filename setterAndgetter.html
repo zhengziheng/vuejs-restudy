@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+    <div id="app">{{fullName}}</div>
+
+    <script >
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            firstName:'Ming',
+            lastName:'Lee',
+        },
+        computed:{
+            fullName:{
+                //计算属性要点
+                // 1：如果只有getter，那么可以不用写成对象的形式，直接写方法名即可，它仅代表getter
+                // 2：如果有getter和setter，需要写成对象，分别写get和set方法
+                // 3：set的参数接收我们赋给计算属性fullName的值
+                get(){
+                    return this.firstName + ' ' +this.lastName
+                },
+                set(value){
+                    var arr = value.split(' ')
+                    this.firstName = arr[0]
+                    this.lastName = arr[1]
+                }
+            }
+        }
+    })
+    
+    
+    </script>
+    
+</body>
+</html>
