@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模板</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 方法1：插值表达式 里面也写js表达式
+        {{name}} -->
+        <!-- 方法2：v-text指令 
+            指令后面接的不是字符串，而是js表达式
+            <div v-text="name + 'Lee'"></div> -->
+        <!-- 方法3：v-html指令，不做转义，谨慎使用
+            <div v-html="name"></div> -->
+    </div>
+
+    <script>
+    let  vm = new Vue({
+        el:'#app',
+        data:{
+            name:'Ming'
+        }
+    })
+    
+    </script>
+</body>
+</html>
