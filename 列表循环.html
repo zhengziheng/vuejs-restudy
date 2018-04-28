@@ -25,6 +25,9 @@
         //pop push shift unshift splice sort reverse
         // 方法2：改变数组的引用地址也可以操作数组
         // this.list = ['lilei','hanmeimei','dashan']
+        // 方法3 ：set方法
+        //全局写法： Vue.set(vm.list,1,'cheery')改变数组索引为1的元素
+        // 实例写法 vm.$set(vm.list,1,'cherry')
         methods:{
             rechange(fruit){
                 this.list.spilce(1,1,fruit)//删除一条，添加一条，可以用来替换数组里面的元素

@@ -11,11 +11,14 @@
 
     <div id="app">
         <!-- 循环对象，item表示value，key表示key，index表示索引 -->
-        <!-- 修改对象 需要修改对象的引用，也就是this.userInfo：{name:'Dell',
+        <!-- 修改对象 方法1：需要修改对象的引用，也就是this.userInfo：{name:'Dell',
                 age:28,
                 gender:'male',
                 salary:'secret',
                 address:'beijing',} -->
+        <!-- 方法2：set方法 -->
+        <!-- 全局写法：Vue.set(vm.userInfo,'address','beijing')
+        实例写法：vm.$set(vm.userInfo,'address','beijing') -->
         <div v-for="(item,key,index) in userInfo" :key="item.id">
             {{item}}--{{key}}--{{index}}
         </div>
