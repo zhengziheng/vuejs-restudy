@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表渲染</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <div v-for="(item,index) in list" :key="index">
+            {{item}}---{{index}}
+        </div>
+    </div>
+
+    <script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            list:['apple','banana','orange']
+        },
+        //方法1：只能用vue提供的7种数组操作方法，操作数组
+        //pop push shift unshift splice sort reverse
+        // 方法2：改变数组的引用地址也可以操作数组
+        // this.list = ['lilei','hanmeimei','dashan']
+        methods:{
+            rechange(fruit){
+                this.list.spilce(1,1,fruit)//删除一条，添加一条，可以用来替换数组里面的元素
+            }
+        }
+    })
+    </script>
+
+</body>
+</html>
+
+
