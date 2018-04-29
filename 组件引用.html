@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件细节</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <counter @change="handleChange" ref="one"></counter>
+        <counter @change="handleChange" ref="two"></counter>
+        <div>{{totle}}</div>
+    </div>
+
+    <script>
+        Vue.component('counter',{
+            data(){//非跟组件中的data应该是函数，然后返回一个对象，因为会在不同的地方调用
+                return {
+                   number:0
+                }
+            },
+            template:'<div @click="handleClick">{{number}}</div>',
+            methods:{
+                handleClick(){
+                    this.number ++
+                    this.$emit('change')
+                }
+            }
+        })
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            totle:0
+        },
+        methods:{
+            handleChange(){
+                this.totle = this.$refs.one.number+this.$refs.two.number
+            }
+        }
+    })
+    
+    </script>
+</body>
+</html>
