@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>slot</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <body-content>
+           <!-- 具名插槽  父组件调用子组件的时候 传递了两个插槽的内容 -->
+           <!-- <div class="header" slot="header"> this is header</div> -->
+           <div class="footer" slot="footer"> this is footer</div>
+       </body-content>
+    </div>
+
+    <script>
+       Vue.component('body-content',{
+           template:
+           `<div>
+                <slot name="header">this is default header</slot>
+                <div>this is content</div>
+                <slot name="footer"></slot>
+           </div>`
+       })
+    let vm = new Vue({
+        el:'#app',
+        
+        
+    })
+    
+    </script>
+</body>
+</html>
