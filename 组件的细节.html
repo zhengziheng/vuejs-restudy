@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>组件细节</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table>
+            <tbody>
+                <!-- 根据h5规范，tbody里面必须写tr，直接写组件名的标签<row>是无法渲染的,我们用is属性来表示这个tr标签是row -->
+                    <!-- ul ol 里面的li section 里面的option也是同理  <li is="row"></li> -->
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+                <tr is="row"></tr>
+            </tbody>
+            <div @click="handleClick" ref="reference">hello vue</div>
+        </table>
+
+    </div>
+
+    <script>
+        Vue.component('row',{
+            data(){//非跟组件中的data应该是函数，然后返回一个对象，因为会在不同的地方调用
+                return {
+                    content:'this is a row'
+                }
+            },
+            template:'<tr><td>{{content}}</td></tr>'
+        })
+    let vm = new Vue({
+        el:'#app',
+        data:{
+
+        },
+        methods:{
+            handleClick(){
+                console.log(this.refs.reference)//这里可以打印整个DOM节点
+            }
+        }
+    })
+    
+    </script>
+</body>
+</html>
