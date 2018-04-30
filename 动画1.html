@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>过度动画+animate动画</title>
+    <script src="vue.js"></script>
+    <link rel="stylesheet" href="animate.css">
+    <style>
+        .fade-enter,
+        .fade-leave-to{
+            opacity: 0;
+        }
+        .fade-enter-active,
+        .fade-leave-active{
+            transition: opacity 3s;
+        }
+    /* @keyframes bounce-in{
+        0%{
+            transform: scale(0);
+        }
+        50%{
+            transform: scale(1.5)
+        }
+        100%{
+            transform: scale(1)
+        }
+    }
+    .fade-enter-active{
+        transform-origin: left center ;
+        animation: bounce-in 1s;
+    }
+    .fade-leave-active{
+        animation: bounce-in 1s reverse;
+        transform-origin: left center ;
+    } */
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- transition所包裹的内容有过度动画效果 name属性对应的值 我们随便起 -->
+        <!-- v-show和v-if 都可以控制显示隐藏，都有动态效果 -->
+        <!-- 让第一次载入dom的时候也有动画效果 用appear属性 -->
+        <!-- type="transition" 意思是动画时长以transition的时长为准 -->
+        <!-- duration 属性也可以定义动画时长 -->
+        <transition 
+        :duration="10000"
+        type="transition"
+        name="fade"
+        appear
+        enter-active-class="animated swing fade-enter-active"
+        leave-active-class="animated shake fade-leave-active"
+        appear-active-class='animated swing'
+        >
+            <div v-if="show">hello Vue</div>
+        </transition>
+       <button @click="handleClick">change</button>
+    </div>
+
+    <script>
+        
+    
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            show:true
+        },
+        methods:{
+            handleClick(){
+                this.show = !this.show
+            }
+        },
+    })
+    
+    </script>
+</body>
+</html>
