@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态组件</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- vuejs 动态组件标签 根据is属性数据的变化自动加载不同组件-->
+       <component :is="type"></component>
+        <button @click="handleChange">change</button>
+    </div>
+
+    <script>
+        Vue.component('child-one',{
+            // v-once只渲染一次，会把dom保存到内存里面，切换之后直接从内存里拿，提高静态内容的展示效率
+            template:'<div v-once>child-one</div>'
+        })
+
+         Vue.component('child-two',{
+            template:'<div v-once>child-two</div>'
+        })
+    
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            type:'child-one'
+        },
+        methods:{
+            handleChange(){
+                this.type=this.type==='child-one'?'child-two':'child-one'
+                console.log(this.type)
+            }
+        }
+        
+    })
+    
+    </script>
+</body>
+</html>
