@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表过度</title>
+    <script src="vue.js"></script>
+    <style>
+    .v-enter,.v-leave-to{
+        opacity: 0;
+    }
+    .v-enter-active,.v-leave-active{
+        transition: opacity 1s;
+    }
+    </style>
+        
+    </script>
+    
+</head>
+<body>
+    <div id="app">
+        <!-- <transition-group> 相当于给循环出来的每一个dom节点都添加了transition
+        <transition>
+        <div>{{item.title}}</div>
+        </transition>-->
+        <transition-group>
+            <div v-for="item in list" :key="item.id">{{item.title}}</div>
+        </transition-group>
+       <button @click="handleBtnClick"></button>
+    </div>
+
+    <script>
+     var count = 0
+    
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            list:[]
+        },
+        methods:{
+            handleBtnClick(){
+                this.list.push({
+                    id:count++,
+                    title:'hello world' 
+                })
+            }
+        }
+       
+        
+    })
+    
+    </script>
+</body>
+</html>
