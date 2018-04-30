@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js动画</title>
+    <script src="vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.0/velocity.min.js">
+        
+    </script>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 动画钩子 -->
+       <transition
+       name="fade"
+       @before-enter="handleBeforeEnter"
+       @enter="handleEnter"
+       @after-enter="handleAfterEnter"
+       @before-leave="handleBeforeLeave"
+       @leave="handleLeave"
+       @after-leave="handleAfterLeave"
+       >
+       <div v-if="show">Hello Vue</div>
+       </transition>
+       <button @click="handleClick">change</button>
+    </div>
+
+    <script>
+        
+    
+    let vm = new Vue({
+        el:'#app',
+        data:{
+            show:true
+        },
+        methods:{
+            handleClick(){
+                this.show = !this.show
+            },
+            handleBeforeEnter(el){//el指的是transition包裹的标签
+                el.style.opacity = 0
+            },
+            handleEnter(el,done){//接收两个参数el,done
+                Velocity(el,{opacity:1},{
+                    duration:1000,
+                    complete:done//当velocity执行完动画函数之后complete属性对应的内容执行 这里是执行done（）函数
+                    })
+                // setTimeout(() => {
+                //     done()//done的调用表示这个进入的动画函数已经执行完了，然后会监听下一个钩子after-enter
+                // }, 4000);
+            },
+            handleAfterEnter(el){
+                alert('动画结束')
+            }
+        },
+    })
+    
+    </script>
+</body>
+</html>
